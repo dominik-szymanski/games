@@ -1,6 +1,11 @@
 #ifndef __OBJECT_HPP__
 #define __OBJECT_HPP__
 
+namespace sf
+{
+  class RenderTarget;
+};
+
 class IDrawable
 {
   public:
@@ -15,14 +20,34 @@ class IMovable
 
 class Object : public IDrawable, IMovable
 {
-  
+  public:
+    Object()
+      : mPosX(0),
+        mPosY(0)
+    {}
+    virtual void Move() override
+    {
+      mPosX += 0.01;
+    }
+
+    float getPosX() {return mPosX;}
+    float getPosY() {return mPosY;}
+
+  private:
+    float mPosX;
+    float mPosY;
 };
 
 class SFML_Object : public Object
 {
   public:
+    SFML_Object() = delete;
+    SFML_Object(sf::RenderTarget& aRenderTarget);
+
     virtual void Draw() override;
-    virtual void Move() override;
+
+  private:
+    sf::RenderTarget& mRenderTarget;
 };
 
 #endif // __OBJECT_HPP__

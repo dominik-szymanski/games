@@ -8,8 +8,8 @@ int main()
   std::cerr << "Game 1.0" << std::endl;
 
   sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
+  
+  SFML_Object o1(window);
 
   while (window.isOpen())
   {
@@ -21,7 +21,10 @@ int main()
     }
 
     window.clear();
-    window.draw(shape);
+    
+    o1.Draw();
+    o1.Move();
+    
     window.display();
   }
 
