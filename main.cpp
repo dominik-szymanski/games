@@ -1,11 +1,13 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 
+#include "object.hpp"
+
 int main()
 {
   std::cerr << "Game 1.0" << std::endl;
 
-  sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+  sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 

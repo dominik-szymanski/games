@@ -17,7 +17,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -pedantic  -Wu
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -pedantic  -Wunused -Ofast")
 
 # add the executable
-add_executable(game main.cpp)
+add_executable(game main.cpp object.cpp)
 
 # link libraries
 message(STATUS ${SFML_LIBRARY} )
