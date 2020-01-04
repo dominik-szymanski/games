@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 
 #include "object.hpp"
+#include "sfmlImp/SFMLObject.hpp"
 
 int main()
 {
@@ -9,7 +10,10 @@ int main()
 
   sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
   
-  SFML_Object o1(window);
+  SFMLObject o1(window);
+
+  Signal<SFMLObject, void (SFMLObject::*)(int)> press_signal;
+  press_signal.Connect(&o1, &SFMLObject::go);
 
   while (window.isOpen())
   {
@@ -19,11 +23,14 @@ int main()
       if (event.type == sf::Event::Closed)
           window.close();
     }
-
+    
     window.clear();
     
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+      press_signal(2);
+    }
     o1.Draw();
-    o1.Move();
     
     window.display();
   }
