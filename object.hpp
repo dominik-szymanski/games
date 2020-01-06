@@ -8,6 +8,14 @@ namespace sf
   class RenderTarget;
 };
 
+enum class Direction
+{
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT
+};
+
 class IDrawable
 {
   public:
@@ -17,7 +25,7 @@ class IDrawable
 class IMovable
 {
   public:
-    virtual void Move() = 0;
+    virtual void move(Direction direction) = 0;
 };
 
 template<typename F, typename FUNC_TYPE>
@@ -44,6 +52,14 @@ class Signal
     FUNC_TYPE           method;
 };
 
+enum class Key
+{
+  UP = 0,
+  DOWN,
+  LEFT,
+  RIGHT
+};
+
 class Object : public IDrawable, IMovable
 {
   public:
@@ -51,15 +67,22 @@ class Object : public IDrawable, IMovable
       : mPosX(0),
         mPosY(0)
     {}
-    virtual void Move() override
-    {
-      mPosX += 0.01;
-    }
+
+    Object(int posX, int posY)
+      : mPosX(posX),
+        mPosY(posY)
+    {}
+
+    virtual void move(Direction direction) override
+    {}
+
+    virtual void onKeyPress(Key key) = 0;
 
     float getPosX() {return mPosX;}
     float getPosY() {return mPosY;}
 
-
+    void setPosX(float PosX) {mPosX = PosX;}
+    void setPosY(float PosY) {mPosY = PosY;}
 
   private:
     float mPosX;

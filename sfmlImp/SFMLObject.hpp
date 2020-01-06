@@ -8,13 +8,11 @@ class SFMLObject : public Object
 {
   public:
     SFMLObject() = delete;
-    SFMLObject(sf::RenderTarget& aRenderTarget);
+    SFMLObject(int posX, int posY, sf::RenderTarget& aRenderTarget);
 
     virtual void Draw() override;
-    void go(int dx)
-    {
-      Move();
-    }
+    virtual void move(Direction direction) override;
+    virtual void onKeyPress(Key key) override;
 
   private:
     sf::RenderTarget& mRenderTarget;
